@@ -60,7 +60,8 @@ namespace _190382D_ASsignment
                     }
                     else
                     {
-                        //errorMsg = "Userid or password is not valid. Please try again.";
+                        //lbl_lgmsg.Visible = true;
+                        //lbl_lgmsg.Text = "Userid or password is not valid. Please try again.";
                         Response.Redirect("Login.aspx", false);
                     }
                 }
