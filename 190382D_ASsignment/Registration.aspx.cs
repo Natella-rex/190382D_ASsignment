@@ -104,7 +104,7 @@ namespace _190382D_ASsignment
 
         //    //To send a GET request to Google along with the response and Secret key.
         //    HttpWebRequest req = (HttpWebRequest)WebRequest.Create
-        //        ("https://www.google.com/recaptcha/api/siteverify?secret=6LfMnz4aAAAAAOp12_GnE1idKrIzJyD589GmxpoW &response=" + captchaResponse);
+        //        ("https://www.google.com/recaptcha/api/siteverify?secret=Server-Site-Key &response=" + captchaResponse);
 
         //    try
         //    {

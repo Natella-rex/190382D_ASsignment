@@ -6,7 +6,7 @@
 <head runat="server">
     <title>SITConnect</title>
     <%--Captcha V3--%>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfMnz4aAAAAAKDqjbmW6_kjSVyHv-Lxy92JskZ4"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=Client-Site-Key"></script>
     <link href="Stylesheet.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .auto-style1 {
@@ -76,7 +76,7 @@
     </form>
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('6LfMnz4aAAAAAKDqjbmW6_kjSVyHv-Lxy92JskZ4', { action: 'Login' }).then(function (token) {
+            grecaptcha.execute('Client-Site-Key', { action: 'Login' }).then(function (token) {
                 document.getElementById("g-recaptcha-response").value = token;
             });
         });
