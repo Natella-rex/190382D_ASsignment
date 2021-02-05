@@ -127,7 +127,7 @@
                         <td class="auto-style3">Password </td>
                         <td class="auto-style10"> <asp:TextBox ID="tb_regpwd" runat="server" Width="200px" TextMode="Password"></asp:TextBox></td>
                         <td class="auto-style7"> 
-                            <asp:Label ID="lbl_regpwdchk" runat="server" Text="pwd checker" Visible="False" ForeColor="Red"></asp:Label><!-- onkeyup="javascript:validate()" auto check while typing -->
+                            <asp:Label ID="lbl_regpwdchk" runat="server" Text="pwd checker" Visible="False" ForeColor="Red" onkeyup="javascript:validate()"></asp:Label><!-- auto check while typing -->
                         </td>
                         <td class="auto-style2"> </td>
                     </tr>
