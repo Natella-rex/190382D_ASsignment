@@ -28,6 +28,7 @@
         </style>
 </head>
 <body>
+    <form id="form1" runat="server">
     <header>
             <div class="container">
               <img src="Images/SITConnectlogo.png" alt="logo" class="logo" width="199" height="75" />
@@ -40,7 +41,6 @@
               </nav>
             </div>
         </header>
-    <form id="form1" runat="server">
         <div class="container">
             <h2>SIT Connect- Change Password</h2>
             <asp:Label ID="lbl_pwdmsg" runat="server" Text="Pwd Error Message" ForeColor="Red" Visible="False"></asp:Label>

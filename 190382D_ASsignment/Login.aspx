@@ -21,18 +21,18 @@
         </style>
 </head>
 <body>
-    <header>
-    <div class="container">
-      <img src="Images/SITConnectlogo.png" alt="logo" class="logo" width="199" height="75" />
-      <nav>
-        <ul>
-          <li><a href="Registration.aspx">Register</a></li>
-          <li><a href="Login.aspx">Login</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
     <form id="form1" runat="server">
+        <header>
+        <div class="container">
+          <img src="Images/SITConnectlogo.png" alt="logo" class="logo" width="199" height="75" />
+          <nav>
+            <ul>
+              <li><a href="Registration.aspx">Register</a></li>
+              <li><a href="Login.aspx">Login</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
         <div class="container">
             <h2>SIT Connect- Login</h2>
             <asp:Label ID="lbl_lgmsg" runat="server" Text="Login Error Message" ForeColor="Red" Visible="False"></asp:Label>

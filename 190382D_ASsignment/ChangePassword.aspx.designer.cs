@@ -15,15 +15,6 @@ namespace _190382D_ASsignment
     {
 
         /// <summary>
-        /// btn_logout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_logout;
-
-        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace _190382D_ASsignment
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// btn_logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_logout;
 
         /// <summary>
         /// lbl_pwdmsg control.
