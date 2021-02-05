@@ -35,7 +35,7 @@
       </header>
         <div class="container">
             <h2>SIT Connect- Login</h2>
-            <asp:Label ID="lbl_lgmsg" runat="server" Text="Login Error Message" ForeColor="Red" Visible="False"></asp:Label>
+            <asp:Label ID="lbl_lgmsg" runat="server" ForeColor="Red" Visible="False">Login Error Message</asp:Label>
             <br />
             <asp:Label ID="lbl_lgjsonmsg" runat="server" Text="Login JSON Message" ForeColor="Blue" Visible="False"></asp:Label>
             <br />

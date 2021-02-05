@@ -31,74 +31,72 @@ namespace _190382D_ASsignment
             {
                 //Crypto
                 string pwd = tb_logpwd.Text.ToString().Trim();
-            string userid = tb_logid.Text.ToString().Trim();
+                string userid = tb_logid.Text.ToString().Trim();
 
-            SHA512Managed hashing = new SHA512Managed();
-            string dbHash = getDBHash(userid);
-            string dbSalt = getDBSalt(userid);
+                SHA512Managed hashing = new SHA512Managed();
+                string dbHash = getDBHash(userid);
+                string dbSalt = getDBSalt(userid);
 
-            try
-            {
-                if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0)
+                try
                 {
-                    string pwdWithSalt = pwd + dbSalt;
-                    byte[] hashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
-                    string userHash = Convert.ToBase64String(hashWithSalt);
-
-                    if (userHash.Equals(dbHash))
+                    if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0)
                     {
-                        Session["UserID"] = userid;
-                        //Session Fixation
-                        Session["LoggedIn"] = HttpUtility.HtmlEncode(tb_logid.Text.Trim());
+                        string pwdWithSalt = pwd + dbSalt;
+                        byte[] hashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
+                        string userHash = Convert.ToBase64String(hashWithSalt);
+
+                        if (userHash.Equals(dbHash))
+                        {
+                            Session["UserID"] = userid;
+                            //Session Fixation
+                            Session["LoggedIn"] = HttpUtility.HtmlEncode(tb_logid.Text.Trim());
                         
-                        //creates a new GUID and save into the session
-                        string guid = Guid.NewGuid().ToString();
-                        Session["AuthToken"] = guid;
+                            //creates a new GUID and save into the session
+                            string guid = Guid.NewGuid().ToString();
+                            Session["AuthToken"] = guid;
 
-                        //now create a new cookie with this guid value
-                        Response.Cookies.Add(new HttpCookie("AuthToken", guid));
+                            //now create a new cookie with this guid value
+                            Response.Cookies.Add(new HttpCookie("AuthToken", guid));
 
-                        Response.Redirect("HomePage.aspx", false);
-                    }
-                    else
-                    {
-                        
-                        if (tb_logid.Text == "" && tb_logpwd.Text == "")
-                        {
-                            lbl_lgmsg.Visible = true;
-                            lbl_lgmsg.Text = "Please enter your email/user id and password";
+                            Response.Redirect("HomePage.aspx", false);
                         }
-
-                        else if (tb_logpwd.Text == "")
-                        {
-                            lbl_lgmsg.Visible = true;
-                            lbl_lgmsg.Text = "Please enter your password";
-                        }
-                        else if (tb_logid.Text == "")
-                        {
-                            lbl_lgmsg.Visible = true;
-                            lbl_lgmsg.Text = "Please enter your email/user id";
-                        }
-
-                        //XSS Prevention
-                        // lbl_comments.Text = HttpUtility.HtmlEncode(tb_logid.Text); create lbl on login page to work
-                        //Response.Redirect("XSSDisplay.aspx?Comment=" + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logid.Text)) + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logpwd.Text)));
-
                         else
                         {
-                            lbl_lgmsg.Visible = true;
-                            lbl_lgmsg.Text = "Wrong username or password";
+                            if (String.IsNullOrEmpty(tb_logid.Text) && String.IsNullOrEmpty(tb_logpwd.Text))
+                            {
+                                lbl_lgmsg.Visible = true;
+                                lbl_lgmsg.Text = "Please enter your email/user id and password";
+                            }
+
+                            if (tb_logpwd.Text == "")
+                            {
+                                lbl_lgmsg.Visible = true;
+                                lbl_lgmsg.Text = "Please enter your password";
+                            }
+                            else if (tb_logid.Text == "")
+                            {
+                                lbl_lgmsg.Visible = true;
+                                lbl_lgmsg.Text = "Please enter your email/user id";
+                            }
+
+                            //XSS Prevention
+                            // lbl_comments.Text = HttpUtility.HtmlEncode(tb_logid.Text); create lbl on login page to work
+                            //Response.Redirect("XSSDisplay.aspx?Comment=" + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logid.Text)) + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logpwd.Text)));
+
+                            else
+                            {
+                                lbl_lgmsg.Visible = true;
+                                lbl_lgmsg.Text = "Wrong username or password";
+                            }
+                            
                         }
-                        
-                        Response.Redirect("Login.aspx", false);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            finally { }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.ToString());
+                }
+                finally { }
             }
         }
 
