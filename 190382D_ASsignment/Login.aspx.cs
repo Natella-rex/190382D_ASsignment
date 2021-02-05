@@ -29,6 +29,33 @@ namespace _190382D_ASsignment
         {
             if (ValidateCaptcha()) //Captcha V3
             {
+                if (tb_logid.Text == "" && tb_logpwd.Text == "")
+                {
+                    lbl_lgmsg.Visible = true;
+                    lbl_lgmsg.Text = "Please enter your email/user id and password";
+                }
+
+                else if (tb_logpwd.Text == "")
+                {
+                    lbl_lgmsg.Visible = true;
+                    lbl_lgmsg.Text = "Please enter your password";
+                }
+
+                else if (tb_logid.Text == "")
+                {
+                    lbl_lgmsg.Visible = true;
+                    lbl_lgmsg.Text = "Please enter your email/user id";
+                }
+
+                //XSS Prevention
+                // lbl_comments.Text = HttpUtility.HtmlEncode(tb_logid.Text); create lbl on login page to work
+                //Response.Redirect("XSSDisplay.aspx?Comment=" + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logid.Text)) + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logpwd.Text)));
+
+                else
+                {
+                    lbl_lgmsg.Visible = true;
+                    lbl_lgmsg.Text = "Wrong username or password";
+                }
                 //Crypto
                 string pwd = tb_logpwd.Text.ToString().Trim();
                 string userid = tb_logid.Text.ToString().Trim();
@@ -59,36 +86,6 @@ namespace _190382D_ASsignment
                             Response.Cookies.Add(new HttpCookie("AuthToken", guid));
 
                             Response.Redirect("HomePage.aspx", false);
-                        }
-                        else
-                        {
-                            if (String.IsNullOrEmpty(tb_logid.Text) && String.IsNullOrEmpty(tb_logpwd.Text))
-                            {
-                                lbl_lgmsg.Visible = true;
-                                lbl_lgmsg.Text = "Please enter your email/user id and password";
-                            }
-
-                            if (tb_logpwd.Text == "")
-                            {
-                                lbl_lgmsg.Visible = true;
-                                lbl_lgmsg.Text = "Please enter your password";
-                            }
-                            else if (tb_logid.Text == "")
-                            {
-                                lbl_lgmsg.Visible = true;
-                                lbl_lgmsg.Text = "Please enter your email/user id";
-                            }
-
-                            //XSS Prevention
-                            // lbl_comments.Text = HttpUtility.HtmlEncode(tb_logid.Text); create lbl on login page to work
-                            //Response.Redirect("XSSDisplay.aspx?Comment=" + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logid.Text)) + HttpUtility.UrlEncode(HttpUtility.HtmlEncode(tb_logpwd.Text)));
-
-                            else
-                            {
-                                lbl_lgmsg.Visible = true;
-                                lbl_lgmsg.Text = "Wrong username or password";
-                            }
-                            
                         }
                     }
                 }

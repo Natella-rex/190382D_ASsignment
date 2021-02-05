@@ -143,7 +143,7 @@
                         <td class="auto-style7"> 
                             &nbsp;</td>
                         <td class="auto-style2">  
-                            <asp:Button ID="btn_checkPassword" runat="server" Text="Check Password" Width="200px" BackColor="White" ForeColor="#CCA9EB" OnClick="btn_checkPassword_Click" />
+                            <asp:Button ID="btn_checkPassword" runat="server" Text="Check Password" Width="200px" BackColor="White" ForeColor="#CCA9EB" />
                         </td>
                     </tr>
                     <tr>

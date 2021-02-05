@@ -30,60 +30,61 @@ namespace _190382D_ASsignment
             lbl_regpwdchk.Visible = false;
             lbl_regerrmsg.Visible = false;
             lbl_regjsonmsg.Visible = false;
+            btn_checkPassword.Visible = false;
         }
 
         //Password Checker
-        protected void btn_checkPassword_Click(object sender, EventArgs e)
-        {
-            //if (ValidateCaptcha()) //Captcha V3
-            //{
-            // implement codes for the button event
-            // Extract data from textbox
+        //protected void btn_checkPassword_Click(object sender, EventArgs e)
+        //{
+        //    //if (ValidateCaptcha()) //Captcha V3
+        //    //{
+        //    // implement codes for the button event
+        //    // Extract data from textbox
             
-            if (tb_regpwd.Text == "")
-                {
-                    lbl_regpwdchk.Visible = false;
-                }
-                else if (tb_regpwd.Text == tb_regcfmpwd.Text)
-                {
-                    lbl_regpwdchk.Visible = true;
-                    int scores = checkPassword(tb_regpwd.Text);
-                    string status = "";
-                    switch (scores)
-                    {
-                        case 1:
-                            status = "Very Weak";
-                            break;
-                        case 2:
-                            status = "Weak";
-                            break;
-                        case 3:
-                            status = "Medium";
-                            break;
-                        case 4:
-                            status = "Strong";
-                            break;
-                        case 5:
-                            status = "Excellent";
-                            break;
-                        default:
-                            break;
-                    }
-                    lbl_regpwdchk.Text = "Status : " + status;
-                    if (scores < 4)
-                    {
-                        lbl_regpwdchk.ForeColor = Color.Red;
-                        return;
-                    }
-                    lbl_regpwdchk.ForeColor = Color.Green;
-                }
-                else
-                {
-                    lbl_regpwdchk.Visible = true;
-                    lbl_regpwdchk.Text = "Passwords must match!";
-                }
-            //}
-        }
+        //    if (tb_regpwd.Text == "")
+        //    {
+        //        lbl_regpwdchk.Visible = false;
+        //    }
+        //    else if (tb_regpwd.Text == tb_regcfmpwd.Text)
+        //    {
+        //        lbl_regpwdchk.Visible = true;
+        //        int scores = checkPassword(tb_regpwd.Text);
+        //        string status = "";
+        //        switch (scores)
+        //        {
+        //            case 1:
+        //                status = "Very Weak";
+        //                break;
+        //            case 2:
+        //                status = "Weak";
+        //                break;
+        //            case 3:
+        //                status = "Medium";
+        //                break;
+        //            case 4:
+        //                status = "Strong";
+        //                break;
+        //            case 5:
+        //                status = "Excellent";
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        lbl_regpwdchk.Text = "Status : " + status;
+        //        if (scores < 4)
+        //        {
+        //            lbl_regpwdchk.ForeColor = Color.Red;
+        //            return;
+        //        }
+        //        lbl_regpwdchk.ForeColor = Color.Green;
+        //    }
+        //    else
+        //    {
+        //        lbl_regpwdchk.Visible = true;
+        //        lbl_regpwdchk.Text = "Passwords must match!";
+        //    }
+        //    //}
+        //}
 
         ////Captcha V3
         //public class MyObject
@@ -179,6 +180,48 @@ namespace _190382D_ASsignment
 
         protected void btn_reg_Click(object sender, EventArgs e)
         {
+            if (tb_regpwd.Text == "")
+            {
+                lbl_regpwdchk.Visible = false;
+            }
+            else if (tb_regpwd.Text == tb_regcfmpwd.Text)
+            {
+                lbl_regpwdchk.Visible = true;
+                int scores = checkPassword(tb_regpwd.Text);
+                string status = "";
+                switch (scores)
+                {
+                    case 1:
+                        status = "Very Weak";
+                        break;
+                    case 2:
+                        status = "Weak";
+                        break;
+                    case 3:
+                        status = "Medium";
+                        break;
+                    case 4:
+                        status = "Strong";
+                        break;
+                    case 5:
+                        status = "Excellent";
+                        break;
+                    default:
+                        break;
+                }
+                lbl_regpwdchk.Text = "Status : " + status;
+                if (scores < 4)
+                {
+                    lbl_regpwdchk.ForeColor = Color.Red;
+                    return;
+                }
+                lbl_regpwdchk.ForeColor = Color.Green;
+            }
+            else
+            {
+                lbl_regpwdchk.Visible = true;
+                lbl_regpwdchk.Text = "Passwords must match!";
+            }
             if (string.IsNullOrWhiteSpace(tb_regfirst.Text) && string.IsNullOrWhiteSpace(tb_regfirst.Text))
             {
                 if (string.IsNullOrWhiteSpace(tb_regid.Text)){
@@ -202,6 +245,7 @@ namespace _190382D_ASsignment
             }
             else
             {
+                //Regex email = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
                 Regex email = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                 RegexOptions.CultureInvariant | RegexOptions.Singleline);
                 bool isValidEmail = email.IsMatch(tb_regid.Text);
@@ -285,13 +329,13 @@ namespace _190382D_ASsignment
                                 {
                                     TextBox txt = (TextBox)control;
                                     txt.Text = "";
-                                    lbl_regerrmsg.Visible = true;
-                                    lbl_regerrmsg.ForeColor = Color.Green;
-                                    lbl_regerrmsg.Text = "Account Successfully Registered!";
                                 }
                             }
                             Session["changepwdtime"] = DateTime.Now;
-
+                            lbl_regerrmsg.Visible = true;
+                            lbl_regerrmsg.ForeColor = Color.Green;
+                            lbl_regerrmsg.Text = "Account Successfully Registered!";
+                            //System.Threading.Thread.Sleep(5000);
                             Response.Redirect("Login.aspx", false);
 
                         }
